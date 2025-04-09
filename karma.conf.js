@@ -15,8 +15,8 @@ module.exports = function (config) {
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'dist/angular-marked.min.js',
-      'bower_components/marked/lib/marked.js',
+      'node_modules/marked/marked.min.js',
+      'dist/angular-marked.js',
       'test/**/*.js'
     ],
 
@@ -43,7 +43,7 @@ module.exports = function (config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['PhantomJS', 'Chrome'],
+    browsers: ['Chrome'],
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit

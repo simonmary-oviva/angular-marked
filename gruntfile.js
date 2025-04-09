@@ -19,7 +19,7 @@ module.exports = function (grunt) {
         scripts: [
           './bower_components/angular/angular.js',
           './bower_components/angular-animate/angular-animate.js',
-          './bower_components/marked/lib/marked.js',
+          './bower_components/marked-es5/marked.min.js',
           './dist/<%= pkg.name %>.js',
           './docs-template/script.js'
         ],
