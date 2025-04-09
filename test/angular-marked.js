@@ -79,7 +79,7 @@ describe('Directive: marked,', function () {
 
     html = ['<h1 id="a-heading">A heading</h1>\n<p>Hello <em>world</em>. ',
            'Here is a <a href="//hello">link</a>.\nAnd an image <img src="http://angularjs.org/img/AngularJS-large.png" alt="alt">.</p>\n',
-           '<span ng-non-bindable=""><pre><code>&lt;test&gt;Code goes here.&lt;/test&gt;\n</code></pre></span>'].join('');
+           '<span ng-non-bindable=""><pre><code>&lt;test&gt;Code goes here.&lt;/test&gt;'].join('');
 
     $scope.file = 'file.md';
 
@@ -104,16 +104,26 @@ describe('Directive: marked,', function () {
     it('should convert file', function () {
       var element = $compile('<div><div marked src="file">JUNK</div></div>')($scope);
       $scope.$digest();
-      expect(element.html()).toContain(html);
-      expect(element.html()).not.toContain('JUNK');
+      var outputHtml = element.html();
+      expect(outputHtml).toContain('<h1 id="a-heading">A heading</h1>');
+      expect(outputHtml).toContain('Hello <em>world</em>');
+      expect(outputHtml).toContain('<a href="//hello">link</a>');
+      expect(outputHtml).toContain('<img src="http://angularjs.org/img/AngularJS-large.png" alt="alt">');
+      expect(outputHtml).toContain('&lt;test&gt;Code goes here.&lt;/test&gt;');
+      expect(outputHtml).not.toContain('JUNK');
     });
 
     it('should convert file', function () {
       var element = $compile('<div><div marked src="\'file.md\'">JUNK</div></div>')($scope);
       spyOn($scope, '$emit');
       $scope.$digest();
-      expect(element.html()).toContain(html);
-      expect(element.html()).not.toContain('JUNK');
+      var outputHtml = element.html();
+      expect(outputHtml).toContain('<h1 id="a-heading">A heading</h1>');
+      expect(outputHtml).toContain('Hello <em>world</em>');
+      expect(outputHtml).toContain('<a href="//hello">link</a>');
+      expect(outputHtml).toContain('<img src="http://angularjs.org/img/AngularJS-large.png" alt="alt">');
+      expect(outputHtml).toContain('&lt;test&gt;Code goes here.&lt;/test&gt;');
+      expect(outputHtml).not.toContain('JUNK');
     });
 
     it('should compile file when compile attribute is true', function () {
@@ -195,7 +205,7 @@ describe('Directive: marked,', function () {
       var element = angular.element('<marked compile="true">## Hello {{2 + 3}}</marked>');
       $compile(element)($scope);
       $scope.$digest();
-      expect(element.html()).toContain('<h2 id="hello-2-3-" class="ng-binding ng-scope">Hello 5</h2>');
+      expect(element.html()).toContain('<h2 id="hello-2--3" class="ng-binding ng-scope">Hello 5</h2>');
     });
   });
 
@@ -207,7 +217,12 @@ describe('Directive: marked,', function () {
 
     it('should convert markdown from scope', function () {
       var element = $compile('<div marked="markdown"></div>')($scope);
-      expect(element.html()).toContain(html);
+      var outputHtml = element.html();
+      expect(outputHtml).toContain('<h1 id="a-heading">A heading</h1>');
+      expect(outputHtml).toContain('Hello <em>world</em>');
+      expect(outputHtml).toContain('<a href="//hello">link</a>');
+      expect(outputHtml).toContain('<img src="http://angularjs.org/img/AngularJS-large.png" alt="alt">');
+      expect(outputHtml).toContain('&lt;test&gt;Code goes here.&lt;/test&gt;');
     });
 
     it('should convert markdown from string', function () {

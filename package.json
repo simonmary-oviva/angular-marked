@@ -7,9 +7,13 @@
     "test": "test"
   },
   "dependencies": {
-    "marked": "^0.3.3"
+    "marked": "^4.3.0",
+    "marked-plaintext": "^0.0.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.27.0",
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
     "browserify": "^13.0.1",
     "grunt": "^1.0.1",
     "grunt-gh-pages": "^1.1.0",
@@ -27,10 +31,11 @@
     "browserify": "browserify lib/angular-marked.js -s angular-marked -o dist/angular-marked.js -x marked",
     "uglify": "uglifyjs dist/angular-marked.js -o dist/angular-marked.min.js",
     "compile": "npm run browserify && npm run uglify",
+    "transpile-marked": "npx babel node_modules/marked/marked.min.js --out-file bower_components/marked-es5/marked.min.js",
     "docs": "grunt ngdocs",
     "build": "npm run compile && npm run docs",
     "lint": "xo lib/*.js test/**/*.js",
-    "test": "npm run compile && karma start --single-run --browsers PhantomJS",
+    "test": "npm run compile && karma start --single-run --browsers Chrome",
     "check": "npm run lint && npm run test",
     "prepublish": "npm run compile",
     "postpublish": "grunt deploy"

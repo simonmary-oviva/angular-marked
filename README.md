@@ -14,6 +14,14 @@ AngularJS Markdown using [marked](https://github.com/chjj/marked).
 
 **Please note:** neither this directive nor marked (by default) implement sanitization. As always, sanitizing is necessary for user-generated content.
 
+## Compatibility
+
+This library is compatible with:
+- marked v4.x.x
+- AngularJS 1.x
+
+For newer versions of marked (v15+), you may need to update your code - see the [marked release notes](https://github.com/markedjs/marked/releases) for breaking changes.
+
 ## Install
 
 `bower install angular-marked`
@@ -29,8 +37,8 @@ or
 Depending on your setup you may need include script tags in your html:
 
 ```html
-<script src="bower_components/marked/lib/marked.js"></script>
-<script src="bower_components/angular-marked/dist/angular-marked.js"></script>
+<script src="node_modules/marked/marked.min.js"></script>
+<script src="node_modules/angular-marked/dist/angular-marked.js"></script>
 ```
 
 ## Usage

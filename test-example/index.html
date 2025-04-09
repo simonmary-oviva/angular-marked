@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>angular-marked test</title>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../node_modules/marked/marked.min.js"></script>
+    <script src="../dist/angular-marked.min.js"></script>
+  </head>
+  <body ng-app="test-app" ng-controller="TestController">
+    <h1>Marked Test</h1>
+    
+    <textarea ng-model="md" rows="5" cols="60"></textarea>
+    <div marked="md"></div>
+
+    <script>
+      angular.module('test-app', ['hc.marked'])
+        .controller('TestController', ['$scope', function($scope) {
+          $scope.md = "# Hello World\n\nThis is a **test** of _angular-marked_.";
+        }]);
+    </script>
+  </body>
+</html> 
